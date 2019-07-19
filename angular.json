@@ -115,6 +115,41 @@
           }
         }
       }
+    },
+    "iconify": {
+      "projectType": "library",
+      "root": "projects/iconify",
+      "sourceRoot": "projects/iconify/src",
+      "prefix": "ic",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/iconify/tsconfig.lib.json",
+            "project": "projects/iconify/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/iconify/src/test.ts",
+            "tsConfig": "projects/iconify/tsconfig.spec.json",
+            "karmaConfig": "projects/iconify/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/iconify/tsconfig.lib.json",
+              "projects/iconify/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "iconify-angular"
 }
