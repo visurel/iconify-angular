@@ -1,13 +1,13 @@
-import { Component, HostBinding, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Directive, HostBinding, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { normalize, SVG } from './svg';
 
-@Component({
-  selector: 'ic-icon',
-  template: ``
+@Directive({
+  selector: 'ic-icon,[icIcon]'
 })
-export class IconComponent implements OnInit, OnChanges {
+export class IconDirective implements OnInit, OnChanges {
 
+  @Input() icIcon: object;
   @Input() icon: object;
 
   // Optional Properties
@@ -31,8 +31,7 @@ export class IconComponent implements OnInit, OnChanges {
 
   constructor(private domSanitizer: DomSanitizer) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
@@ -41,12 +40,12 @@ export class IconComponent implements OnInit, OnChanges {
   }
 
   updateIcon() {
-    if (typeof this.icon !== 'object') {
+    if (typeof this.icon !== 'object' && typeof this.icIcon !== 'object') {
       throw new Error('[Iconify]: No icon provided');
     }
 
     // Get SVG data
-    const svg = new SVG(normalize(this.icon));
+    const svg = new SVG(normalize(this.icon || this.icIcon));
 
     // Generate SVG
     this.iconHTML = this.domSanitizer.bypassSecurityTrustHtml(svg.getSVG({
