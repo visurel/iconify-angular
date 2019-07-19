@@ -1,27 +1,79 @@
-# IconifyAngular
+# Iconify
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+Angular implementation of [Iconify](https://github.com/iconify/iconify), strongly inspired from [Iconify-React](https://github.com/iconify/iconify-react#icon-packages).
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+If you are using NPM:
 
-## Code scaffolding
+`npm install @visurel/iconify-angular`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+If you are using Yarn:
 
-## Build
+`yarn add @visurel/iconify-angular`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+This package does not include icons. Icons are split into separate packages that available at NPM. See [Iconify-React](https://github.com/iconify/iconify-react#icon-packages).
 
-## Running unit tests
+## Usage
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Assign the icon to an instance variable in the component:
 
-## Running end-to-end tests
+```typescript
+import { Component } from '@angular/core';
+import home from '@iconify/icons-mdi/home';
+import groupAdd from '@iconify/icons-mdi/group-add';
+import bellSlash from '@iconify/icons-fa-solid/bell-slash';
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+@Component({
+  selector: 'ic-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  homeIcon = home;
+  groupAddIcon = groupAdd;
+  bellSlashIcon = bellSlash;
+}
+```
 
-## Further help
+Use it inside your template:
+
+```angular2html
+<ic-icon [icon]="homeIcon"></ic-icon>
+<p>This is the inline icon: <ic-icon [icon]="bellSlashIcon" [inline]="true"></ic-icon></p>
+```
+
+## Properties
+
+- **icon** [object, required]: icon object from `@iconify/icons-*` packages
+- **width** [string | number]: width of icon. Default value is "1em".
+- **height** [string | number]: height of icon. Default value is "1em".
+- **hFlip** [boolean]: flip icon horizontally
+- **vFlip** [boolean]: flip icon vertically
+- **flip** [string]: same as hFlip and vFlip. Value is "horizontal", "vertical" or "horizontal,vertical"
+- **rotate** [number | string]: rotate icon. Value is number 0-3 (1 = 90deg, 2 = 180deg, 3 = 270deg) or string "90deg", "180deg", "270deg"
+- **color** [string] - icon color, usable only for colorless icons. By default colorless icons use currentColor, so you can set color using stylesheet by setting text color. This property can override it.
+- **align** [string] - icon alignment. It matters only when width and height are both set and width/height ratio doesn't match icon ratio. Value is a string that includes any of these values separated by comma: horizontal alignment: "left", "center", "right", vertical alignment: "top", "middle", "bottom", slice: "meet", "slice". Example: align="left,middle,slice". Default value is "center,middle,meet"
+
+## Contributing
+
+### Code scaffolding
+
+Run `ng generate component component-name --project iconify` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project iconify`.
+> Note: Don't forget to add `--project iconify` or else it will be added to the default project in your `angular.json` file. 
+
+### Build
+
+Run `ng build iconify` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+### Publishing
+
+After building your library with `ng build iconify`, go to the dist folder `cd dist/iconify` and run `npm publish`.
+
+### Running unit tests
+
+Run `ng test iconify` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+### Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

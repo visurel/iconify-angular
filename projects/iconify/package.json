@@ -1,8 +1,19 @@
 {
-  "name": "iconify",
+  "name": "@visurel/iconify-angular",
   "version": "0.0.1",
+  "description": "Angular component for Iconify.",
+  "author": "visurel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/visurel/iconify-angular"
+  },
+  "bugs": {
+    "url": "https://github.com/visurel/iconify-angular/issues"
+  },
+  "homepage": "https://github.com/visurel/iconify-angular",
+  "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^8.1.2",
-    "@angular/core": "^8.1.2"
+    "@angular/common": "^5.0.0",
+    "@angular/core": "^5.0.0"
   }
 }
