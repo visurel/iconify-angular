@@ -38,7 +38,7 @@ export class AppComponent {
 
 Use it inside your template:
 
-```angular2html
+```html
 <ic-icon [icon]="homeIcon"></ic-icon>
 <p>This is the inline icon: <ic-icon [icon]="bellSlashIcon" [inline]="true"></ic-icon></p>
 ```
