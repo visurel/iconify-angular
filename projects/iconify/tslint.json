@@ -12,6 +12,7 @@
       "element",
       "ic",
       "kebab-case"
-    ]
+    ],
+    "no-unnecessary-type-annotation": false
   }
 }

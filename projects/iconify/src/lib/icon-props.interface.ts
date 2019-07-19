@@ -4,9 +4,9 @@ export interface IconProps {
   hFlip: boolean;
   vFlip: boolean;
   flip: string;
-  rotate: number;
+  rotate: string | number;
   color: string;
   align: string;
-  inline: boolean;
-  box: boolean;
+  inline: boolean | string;
+  box: boolean | string;
 }

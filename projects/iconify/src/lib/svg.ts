@@ -4,31 +4,22 @@ import { IconProps } from './icon-props.interface';
 
 /**
  * Unique id counter
- *
- * @type {number}
  */
 let idCounter = 0;
 
 /**
  * Regex used to split dimensions
- *
- * @type {RegExp}
- * @private
  */
 const unitsSplit = /(-?[0-9.]*[0-9]+[0-9.]*)/g;
 const unitsTest = /^-?[0-9.]*[0-9]+[0-9.]*$/g;
 
 /**
  * Attributes used for icon
- *
- * @type {string[]}
  */
 const iconAttributes = ['width', 'height', 'inline', 'hFlip', 'vFlip', 'flip', 'rotate', 'align', 'color', 'box'];
 
 /**
  * Default attribute values
- *
- * @type {object}
  */
 const defaultAttributes = {
   left: 0,
@@ -47,12 +38,9 @@ const defaultAttributes = {
  *
  * JavaScript version uses separate file so this function could be used in React and other components without loading
  * entire Collection class.
- *
- * @param {object} data
- * @return {object}
  */
-export function normalize(data) {
-  let item = Object.assign(Object.create(null), defaultAttributes, data);
+export function normalize(data: object): object {
+  const item = Object.assign(Object.create(null), defaultAttributes, data);
   if (item.inlineTop === void 0) {
     item.inlineTop = item.top;
   }
@@ -69,12 +57,8 @@ export function normalize(data) {
 
 /**
  * Get preserveAspectRatio attribute value
- *
- * @param {object} align
- * @return {string}
- * @private
  */
-export function getAlignment(align) {
+export function getAlignment(align: { horizontal: string; vertical: string; slice: boolean }): string {
   let result;
   switch (align.horizontal) {
     case 'left':
@@ -115,39 +99,14 @@ export class SVG {
    *
    *  Use Collection.getIconData() to retrieve icon data
    */
-  constructor(private _icon) {
-  }
-
-  /**
-   * Split attributes
-   *
-   * @param props
-   * @return {{icon: {}, node: {}}}
-   */
-  static splitAttributes(props) {
-    const result = {
-      icon: Object.create(null),
-      node: Object.create(null)
-    };
-
-    Object.keys(props).forEach(name => {
-      result[iconAttributes.indexOf(name) === -1 ? 'node' : 'icon'][name] = props[name];
-    });
-
-    return result;
-  }
+  constructor(private _icon) {}
 
   /**
    * Calculate second dimension when only 1 dimension is set
-   *
-   * @param {string|number} size One dimension (such as width)
-   * @param {number} ratio Width/height ratio.
-   *      If size == width, ratio = height/width
-   *      If size == height, ratio = width/height
-   * @param {number} [precision] Floating number precision in result to minimize output. Default = 100
-   * @return {string|number|null} Another dimension, null on error
+   * If size == width, ratio = height/width
+   * If size == height, ratio = width/height
    */
-  static calculateDimension(size, ratio, precision = 100) {
+  static calculateDimension(size: string | number, ratio: number, precision = 100): string | number | null {
     if (ratio === 1) {
       return size;
     }
@@ -190,11 +149,8 @@ export class SVG {
   /**
    * Replace IDs in SVG output with unique IDs
    * Fast replacement without parsing XML, assuming commonly used patterns.
-   *
-   * @param {string} body
-   * @return {string}
    */
-  static replaceIDs(body) {
+  static replaceIDs(body: string): string {
     const regex = /\sid="(\S+)"/g;
     const ids = [];
     let match: RegExpExecArray;
@@ -235,11 +191,8 @@ export class SVG {
 
   /**
    * Get SVG attributes
-   *
-   * @param {object} props Custom properties (same as query string in Iconify API)
-   * @returns {string}
    */
-  getAttributes(props) {
+  getAttributes(props: IconProps) {
     const item = this._icon;
     if (typeof props !== 'object') {
       props = Object.create(null);
@@ -468,11 +421,6 @@ export class SVG {
 
   /**
    * Generate SVG
-   *
-   * @param {object} attributes Custom properties (same as query string in Iconify API)
-   * Due to lack of functions in JavaScript for escaping attributes, it is your job to make sure key and value are both properly escaped.
-   * Default value is false.
-   * @returns {string}
    */
   getSVG(attributes: IconProps) {
     const data = this.getAttributes(attributes);
