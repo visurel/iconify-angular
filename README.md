@@ -1,4 +1,4 @@
-# Iconify
+# Angular-Iconify
 
 Angular implementation of [Iconify](https://github.com/iconify/iconify), strongly inspired from [Iconify-React](https://github.com/iconify/iconify-react#icon-packages).
 
