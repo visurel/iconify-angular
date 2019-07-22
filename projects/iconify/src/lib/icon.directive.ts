@@ -35,7 +35,7 @@ export class IconDirective implements OnInit, OnChanges {
 
   constructor(private domSanitizer: DomSanitizer) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
