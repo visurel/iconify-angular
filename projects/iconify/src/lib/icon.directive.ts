@@ -12,7 +12,11 @@ export class IconDirective implements OnInit, OnChanges {
 
   // Optional Properties
   @Input() color: string;
-  @Input() inline: boolean;
+
+  @Input()
+  @HostBinding('class.ic-inline')
+  inline: boolean;
+
   @Input() box: boolean;
 
   // Dimensions and Alignment
