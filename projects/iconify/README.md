@@ -60,7 +60,7 @@ Use it inside your template:
 ### Code scaffolding
 
 Run `ng generate component component-name --project iconify` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project iconify`.
-> Note: Don't forget to add `--project iconify` or else it will be added to the default project in your `angular.json` file. 
+> Note: Don't forget to add `--project iconify` or else it will be added to the default project in your `angular.json` file.
 
 ### Build
 
