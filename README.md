@@ -46,6 +46,7 @@ Use it inside your template:
 ## Properties
 
 - **icon** [object, required]: icon object from `@iconify/icons-*` packages
+- **size** [string]: sets the font-size.
 - **width** [string | number]: width of icon. Default value is "1em".
 - **height** [string | number]: height of icon. Default value is "1em".
 - **hFlip** [boolean]: flip icon horizontally
