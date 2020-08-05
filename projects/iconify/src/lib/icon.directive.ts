@@ -1,3 +1,4 @@
+import { IconService } from './icon.service';
 import { Directive, HostBinding, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { normalize, SVG } from './svg';
@@ -7,8 +8,8 @@ import { normalize, SVG } from './svg';
 })
 export class IconDirective implements OnInit, OnChanges {
 
-  @Input() icIcon: object;
-  @Input() icon: object;
+  @Input() icIcon: object | string;
+  @Input() icon: object | string;
 
   // Optional Properties
   @Input() color: string;
@@ -33,9 +34,9 @@ export class IconDirective implements OnInit, OnChanges {
   @HostBinding('innerHTML')
   iconHTML: SafeHtml;
 
-  constructor(private domSanitizer: DomSanitizer) { }
+  constructor(private domSanitizer: DomSanitizer, private iconService: IconService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes) {
@@ -44,15 +45,21 @@ export class IconDirective implements OnInit, OnChanges {
   }
 
   updateIcon() {
-    if (typeof this.icon !== 'object' && typeof this.icIcon !== 'object') {
+    const icon = this.getIcon();
+    const svg = new SVG(normalize(icon));
+    this.iconHTML = this.generateSvgHtml(svg);
+  }
+
+  private getIcon(): object {
+    const iconInput = this.icon || this.icIcon;
+    if (typeof iconInput !== 'object' && typeof iconInput !== 'string') {
       throw new Error('[Iconify]: No icon provided');
     }
+    return typeof iconInput === 'object' ? iconInput : this.iconService.get(iconInput);
+  }
 
-    // Get SVG data
-    const svg = new SVG(normalize(this.icon || this.icIcon));
-
-    // Generate SVG
-    this.iconHTML = this.domSanitizer.bypassSecurityTrustHtml(svg.getSVG({
+  private generateSvgHtml(svg: SVG): SafeHtml{
+    return this.domSanitizer.bypassSecurityTrustHtml(svg.getSVG({
       width: this.width,
       height: this.height,
       color: this.color,

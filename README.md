@@ -16,6 +16,39 @@ This package does not include icons. Icons are split into separate packages that
 
 ## Usage
 
+
+### Name syntax
+Register the icons you want to use:
+
+```typescript
+import { Component } from '@angular/core';
+import home from '@iconify/icons-mdi/home';
+import groupAdd from '@iconify/icons-mdi/group-add';
+import bellSlash from '@iconify/icons-fa-solid/bell-slash';
+
+@Component({
+  selector: 'ic-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+ constructor(iconService: IconService){
+    iconService.register('home', home);
+    iconService.register('group-add', groupAdd);
+    iconService.register('bell-slash', bellSlash);
+  }
+}
+```
+
+Use it inside any template:
+
+```html
+<ic-icon icon="home"></ic-icon>
+<p>This is the inline icon: <ic-icon icon="bell-slash" [inline]="true"></ic-icon></p>
+```
+
+### Object syntax
+
 Assign the icon to an instance variable in the component:
 
 ```typescript
