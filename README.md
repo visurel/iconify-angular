@@ -18,13 +18,25 @@ This package does not include icons. Icons are split into separate packages that
 
 
 ### Name syntax
-Register the icons you want to use:
+Import the icons you want to use, and export them as an object:
 
 ```typescript
-import { Component } from '@angular/core';
 import home from '@iconify/icons-mdi/home';
 import groupAdd from '@iconify/icons-mdi/group-add';
 import bellSlash from '@iconify/icons-fa-solid/bell-slash';
+
+export const appIcons = {
+  home,
+  'group-add': groupAdd,
+  'bell-slash': bellSlash
+}
+```
+
+Register the icons in the your AppComponent constructor:
+```typescript
+import { Component } from '@angular/core';
+import { IconService } from '@visurel/iconify-angular';
+import { appIcons } from './icons';
 
 @Component({
   selector: 'ic-root',
@@ -33,11 +45,7 @@ import bellSlash from '@iconify/icons-fa-solid/bell-slash';
 })
 export class AppComponent {
   constructor(iconService: IconService){
-    iconService.registerAll({
-      home,
-      'group-add': groupAdd,
-      'bell-slash': bellSlash
-    });
+    iconService.registerAll(appIcons);
   }
 }
 ```
