@@ -15,8 +15,10 @@ export class AppComponent {
   bellSlashIcon = bellSlash;
 
   constructor(iconService: IconService){
-    iconService.register('home', home);
-    iconService.register('group-add', groupAdd);
-    iconService.register('bell-slash', bellSlash);
+    iconService.registerAll({
+      home,
+      'group-add': groupAdd,
+      'bell-slash': bellSlash
+    });
   }
 }

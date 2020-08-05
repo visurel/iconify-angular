@@ -32,10 +32,12 @@ import bellSlash from '@iconify/icons-fa-solid/bell-slash';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
- constructor(iconService: IconService){
-    iconService.register('home', home);
-    iconService.register('group-add', groupAdd);
-    iconService.register('bell-slash', bellSlash);
+  constructor(iconService: IconService){
+    iconService.registerAll({
+      home,
+      'group-add': groupAdd,
+      'bell-slash': bellSlash
+    });
   }
 }
 ```
