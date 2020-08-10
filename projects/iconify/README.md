@@ -68,7 +68,7 @@ Run `ng build iconify` to build the project. The build artifacts will be stored 
 
 ### Publishing
 
-After building your library with `ng build iconify`, go to the dist folder `cd dist/iconify` and run `npm publish`.
+After building your library with `ng build iconify --prod` (https://v9.angular.io/guide/ivy#maintaining-library-compatibility), go to the dist folder `cd dist/iconify` and run `npm publish`.
 
 ### Running unit tests
 
