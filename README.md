@@ -16,6 +16,49 @@ This package does not include icons. Icons are split into separate packages that
 
 ## Usage
 
+
+### Name syntax
+Import the icons you want to use, and export them as an object:
+
+```typescript
+import home from '@iconify/icons-mdi/home';
+import groupAdd from '@iconify/icons-mdi/group-add';
+import bellSlash from '@iconify/icons-fa-solid/bell-slash';
+
+export const appIcons = {
+  home,
+  'group-add': groupAdd,
+  'bell-slash': bellSlash
+}
+```
+
+Register the icons in the your AppComponent constructor:
+```typescript
+import { Component } from '@angular/core';
+import { IconService } from '@visurel/iconify-angular';
+import { appIcons } from './icons';
+
+@Component({
+  selector: 'ic-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  constructor(iconService: IconService){
+    iconService.registerAll(appIcons);
+  }
+}
+```
+
+Use it inside any template:
+
+```html
+<ic-icon icon="home"></ic-icon>
+<p>This is the inline icon: <ic-icon icon="bell-slash" [inline]="true"></ic-icon></p>
+```
+
+### Object syntax
+
 Assign the icon to an instance variable in the component:
 
 ```typescript
