@@ -21,6 +21,7 @@ export class IconDirective implements OnInit, OnChanges {
   @Input() box: boolean;
 
   // Dimensions and Alignment
+  @Input() size: string;
   @Input() width = '1em';
   @Input() height = '1em';
   @Input() align: string;
@@ -60,8 +61,8 @@ export class IconDirective implements OnInit, OnChanges {
 
   private generateSvgHtml(svg: SVG): SafeHtml{
     return this.domSanitizer.bypassSecurityTrustHtml(svg.getSVG({
-      width: this.width,
-      height: this.height,
+      width: this.size || this.width,
+      height: this.size || this.height,
       color: this.color,
       inline: this.inline,
       box: this.box,
