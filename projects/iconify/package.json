@@ -1,6 +1,6 @@
 {
   "name": "@visurel/iconify-angular",
-  "version": "10.1.1",
+  "version": "11.0.0",
   "description": "Angular component for Iconify.",
   "author": "visurel",
   "repository": {
@@ -15,8 +15,7 @@
   "peerDependencies": {
     "@angular/common": ">=5.0.0",
     "@angular/core": ">=5.0.0"
-  }
-,
+  },
   "dependencies": {
     "tslib": "^2.0.0"
   }
